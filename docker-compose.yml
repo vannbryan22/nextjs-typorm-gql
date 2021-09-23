@@ -1,0 +1,19 @@
+version: "3"
+services:
+  app:
+    build: .
+    container_name: next-js-typeorm-typegraphql
+    restart: always
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env.local
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    container_name: mongo
+    restart: always
+    volumes:
+      - ./data:/data/db
